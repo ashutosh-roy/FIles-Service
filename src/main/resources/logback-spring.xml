@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="true">
+
+	<springProperty source="spring.profiles.active"
+		name="environment" scope="context" defaultValue="local" />
+	<springProperty source="spring.application.name"
+		name="serviceName" scope="context" defaultValue="serviceName" />
+
+	#---------------------------------------
+	# Logging Pattern For Local SysOuts
+	#---------------------------------------
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - [TRACE_ID:%X{TRACE_ID:-null}, ENVIRONMENT: ${environment}, SERVICE_NAME: ${serviceName}] - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="splunk.logger" />
+	<springProfile name="local">
+		<root level="INFO">
+			<appender-ref ref="STDOUT" />
+		</root>
+	</springProfile>
+	<springProfile name="dev">
+		<root level="INFO">
+			<appender-ref ref="STDOUT" />
+		</root>
+	</springProfile>
+</configuration> 
