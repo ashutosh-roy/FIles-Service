@@ -1,11 +1,10 @@
 package com.algomox.filesservice.controller;
-import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,11 +26,11 @@ public class FilesController
 	ObjectMapper ob = new ObjectMapper();
 	
 	@GetMapping()
-	public FilesApiResponse readFile(@RequestParam String fileName) throws Exception
+	public FilesApiResponse readFile(@RequestParam String name) throws Exception
 	{
-		if(StringUtils.isEmpty(fileName)) 
+		if(!StringUtils.isEmpty(name)) 
 		{
-			return files.readFile(fileName);
+			return files.readFile(name);
 		}
 		else
 		{
@@ -41,9 +40,16 @@ public class FilesController
 	}
 	
 	@PostMapping()
-	public String saveFile(List<Object> fileData)
+	public FilesApiResponse saveFile(@RequestBody String fileData) throws Exception
 	{
-		return null;
+		if(!StringUtils.isEmpty(fileData)) 
+		{
+			return files.saveFile(fileData);
+		}
+		else
+		{
+			throw new WEBPersistenceException(Constants.FILE_NAME_MISSING_ERROR);
+		}
 	}
 
 }

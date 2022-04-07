@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
 import com.algomox.filesservice.constants.Constants;
 import com.algomox.filesservice.models.EventErrorStatus;
 import com.algomox.filesservice.models.FilesApiResponse;
@@ -21,7 +22,6 @@ import com.algomox.filesservice.models.FilesApiResponse;
 public class FilesExceptionHandler extends ResponseEntityExceptionHandler {
 
 	public static final String LINE_NUM_STRING = "LineNum: ";
-	private static final Logger LOG = LoggerFactory.getLogger(FilesExceptionHandler.class);
 	/**
 	 * Handle NullpointerException over this service
 	 * 
@@ -86,7 +86,6 @@ public class FilesExceptionHandler extends ResponseEntityExceptionHandler {
 		EventErrorStatus error = new EventErrorStatus(errorCategory,errorCode,message,errorFieldPath);
 		response.setEventError(error);
 		response.setStatus(Constants.FAILURE);
-		LOG.error(message);
 		return response;
 	}
 

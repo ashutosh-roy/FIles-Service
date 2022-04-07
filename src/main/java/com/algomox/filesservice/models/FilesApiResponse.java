@@ -1,10 +1,16 @@
 package com.algomox.filesservice.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class FilesApiResponse 
 {
+	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private String status;
+	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private String message;
+	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private String data;
+	@JsonInclude(JsonInclude.Include.NON_NULL)
 	private EventErrorStatus eventError;
 	public FilesApiResponse() 
 	{
