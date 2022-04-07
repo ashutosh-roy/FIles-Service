@@ -1,10 +1,16 @@
 spring:
-      application:
-         name: files-service   
-      
-      profiles:
-         active: local
-      
-      mvc:
-         pathmatch:
-            matching-strategy: ant_path_matcher
+   application:
+      name: files-service   
+   
+   profiles:
+      active: local
+   
+   mvc:
+      pathmatch:
+         matching-strategy: ant_path_matcher
+   
+   data:
+      cassandra:
+         keyspace-name : algomox
+         contact-points : localhost
+         port : 9042
