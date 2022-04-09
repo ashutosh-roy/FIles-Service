@@ -15,4 +15,5 @@ public class Constants {
 	public static final String T_003 = "T_003";
 	public static final String FILE_NAME_MISSING_ERROR = "File Name cannot be empty.";
 	public static final String FILENAME = "license.yaml";
+	public static final String TABLE_NAME = "licensed_data"; 
 }
